@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Http\Requests\ContactsRequest;
 class ContactsController extends Controller
 {
     /**
@@ -13,7 +13,7 @@ class ContactsController extends Controller
      */
     public function index()
     {
-        return view(contacts.index);
+        return view('contacts.index');
     }
 
     /**
@@ -23,7 +23,7 @@ class ContactsController extends Controller
      */
     public function create()
     {
-        return view(contacts.create);
+        return view('contacts.create');
     }
 
     /**
@@ -32,9 +32,10 @@ class ContactsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ContactsRequest $request)
     {
-        //
+        $data = $request->validated();
+        
     }
 
     /**
@@ -56,7 +57,7 @@ class ContactsController extends Controller
      */
     public function edit($id)
     {
-        return view(contacts.edit);
+        return view('contacts.edit');
     }
 
     /**
