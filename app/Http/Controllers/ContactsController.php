@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Contacts;
-use App\Http\Requests\ContactsRequest;
+use App\Http\Requests\ContactRequest;
 use App\Repositories\ContactsRepository;
+use Illuminate\View\View;
 
 class ContactsController extends Controller
 {
@@ -21,11 +21,11 @@ class ContactsController extends Controller
             $this->repository = $repository;
         }
 
-    public function index()
+    public function index():View
     {
         $data = $this->repository->getContacts();
-        // dd($data);
-        return view('contacts.index')->with(compact('data', $data));
+        
+        return view('contacts.index', compact('data'));
     }
 
     /**
@@ -33,7 +33,7 @@ class ContactsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create():View
     {
         
         return view('contacts.create');
@@ -45,13 +45,12 @@ class ContactsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ContactsRequest $request)
+    public function store(ContactRequest $request)
     {
         $data = $request->validated();
-        // dd($data);
         $this->repository->create($data);
 
-        return redirect()->route('Contacts.index');
+        return redirect()->route('contacts.index');
         
     }
 
@@ -72,7 +71,7 @@ class ContactsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id):View
     {
         $data = $this->repository->findContact($id);
         return view('contacts.edit', compact('data'));
@@ -89,7 +88,7 @@ class ContactsController extends Controller
     {
         
         
-        // return redirect()->route('Contacts.index');
+        return redirect()->route('contacts.index');
     }
 
     /**
@@ -102,6 +101,6 @@ class ContactsController extends Controller
     {
         $this->repository->delete($id);
         
-        return redirect()->route('posts.index');
+        return redirect()->route('contacts.index');
     }
 }

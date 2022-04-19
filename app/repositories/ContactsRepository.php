@@ -2,9 +2,8 @@
 
 namespace App\Repositories;
 
-use App\Models\Contacts;
-use App\Service\ContactsService;
-use App\Http\Requests\ContactsRequest;
+use App\Models\Contact;
+use App\Http\Requests\ContactRequest;
 
 class ContactsRepository {
 
@@ -12,38 +11,36 @@ class ContactsRepository {
 
     public function create(array $payload): bool
     {
-        if (!empty($payload)) {    
-            Contacts::create($payload);
-        }
-
+            
+        Contact::create($payload);
         
         return true;
     }
 
-    public function getContacts(){
-       
-       return Contacts::all();
-    }
-
-    public function findContact(int $id){
-        return Contacts::find($id);
-    }
-
-    public function edit(ContactsRequest $request, int $id) {
+    public function getContacts()
+    {
         
+       return Contact::paginate(10);
+    }
+
+    public function findContact(int $id):Contact
+    {
+        return Contact::find($id);
+    }
+
+    public function edit(int $id, ContactRequest $request):Contact 
+    {
         $data = $request->validated();
-        $contacts = Contacts::find($id);
-        
-        $contacts->name = $data['name'];
-        $contacts->contact = $data['contact'];
-        $contacts->email = $data['email'];
+        $contacts = Contact::find($id);
+        $contacts->update($data);
         $contacts->save();
 
         return $contacts;
     }
 
-    public function delete($id): bool{
-        $contacts = Contacts::find($id);
+    public function delete($id): bool
+    {
+        $contacts = Contact::find($id);
         $contacts->delete();
 
         return true;

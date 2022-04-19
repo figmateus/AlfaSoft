@@ -71,7 +71,7 @@
                                 </div>
                                 <div class="col">
                                     <button type="submit">Edit</button>
-                                    <a  href="{{route('Contacts.index')}}"><button>back<button/></a>
+                                    <a  href="{{route('contacts.index')}}"><button>back<button/></a>
                                 </div>
                                 
                             </div>

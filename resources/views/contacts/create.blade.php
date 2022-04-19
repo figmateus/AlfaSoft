@@ -49,7 +49,7 @@
             <div class="main-container">
                 <div class="container">
                     <div class="table">
-                        <form class="table" method="POST" action="{{ route('Contacts.store') }}" autocomplete="off">
+                        <form class="table" method="POST" action="{{ route('contacts.store') }}" autocomplete="off">
                             @csrf
                             <div class="form">
                                 <div class="col">
@@ -66,7 +66,7 @@
                                 </div>
                                 <div class="col">
                                     <input class="buttonCreate" type="submit" value="create"></input>
-                                    <a class="buttonBack" href="{{route('Contacts.index')}}">back</a>
+                                    <a class="buttonBack" href="{{route('contacts.index')}}">back</a>
                                 </div>
                             </div>
                         </form>

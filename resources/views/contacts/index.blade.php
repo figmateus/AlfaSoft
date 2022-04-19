@@ -49,7 +49,7 @@
 <body class="antialiased">
     <h2>Index</h2>
     <span>
-        <a href="/Contacts/create">
+        <a href="/contacts/create">
             create
         </a>
     </span>
@@ -69,7 +69,6 @@
                         </thead>
                         <tbody id="mytable">
                             @foreach ($data as $item)
-                            {{-- {{dd($item)}} --}}
                             <tr>
                                 <td scope="row">{{$item->id}}</td>
                                 <td scope="row">{{$item->name}}</td>
@@ -77,14 +76,18 @@
                                 <td scope="row">{{$item->email}}</td>
                                 <td scope="row">
                                     <span>
-                                        <a href="{{URL::to('Contacts/' . $item->id . '/edit')}}" role="button" class="buttonEdit">edit</a>
+                                        <a href="{{URL::to('contacts/' . $item->id . '/edit')}}" role="button" class="buttonEdit">edit</a>
                                     </span>
                                     <span>
-                                        <a href="{{URL::to('Contacts/' . $item->id . '/edit')}}" role="button" class="buttonDelete">delete</a>
+                                        <a href="{{URL::to('contacts/' . $item->id . '/edit')}}" role="button" class="buttonDelete">delete</a>
                                     </span>
                                 </td>
                             </tr>
                             @endforeach
+
+                            <div>
+                                {{$data->links()}}
+                            </div>
                         </tbody>
                     </table>
                 </div>
