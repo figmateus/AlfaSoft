@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Create</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -27,7 +27,19 @@
                 width: 300px;
             }
 
+            .buttonBack{
+                text-decoration: none;
+                padding: 9px;
+                background-color:aquamarine;
+                color: #000; 
+            }
 
+            .buttonCreate{
+                text-decoration: none;
+                padding: 10px;
+                background-color:darkcyan;
+                color: #000; 
+            }
 
         </style>
     </head>
@@ -46,14 +58,15 @@
                                 </div>
                                 <div class="col">
                                     <label for="contacts">Contact:</label><br/>
-                                    <input class="field" type="number" name="contacts" id="contacts"/>
+                                    <input class="field" type="number" name="contact" id="contact"/>
                                 </div>
                                 <div class="col">
                                     <label for="email">E-mail:</label><br/>
                                     <input class="field" type="email" name="email" id="email"/>
                                 </div>
                                 <div class="col">
-                                    <button type="submit">Create</button>
+                                    <input class="buttonCreate" type="submit" value="create"></input>
+                                    <a class="buttonBack" href="{{route('Contacts.index')}}">back</a>
                                 </div>
                             </div>
                         </form>

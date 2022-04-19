@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Contacts;
 use App\Http\Requests\ContactsRequest;
+use App\Repositories\ContactsRepository;
+
 class ContactsController extends Controller
 {
     /**
@@ -11,9 +14,18 @@ class ContactsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    protected $repository;
+    
+     public function __construct(ContactsRepository $repository)
+        {
+            $this->repository = $repository;
+        }
+
     public function index()
     {
-        return view('contacts.index');
+        $data = $this->repository->getContacts();
+        // dd($data);
+        return view('contacts.index')->with(compact('data', $data));
     }
 
     /**
@@ -23,6 +35,7 @@ class ContactsController extends Controller
      */
     public function create()
     {
+        
         return view('contacts.create');
     }
 
@@ -35,6 +48,10 @@ class ContactsController extends Controller
     public function store(ContactsRequest $request)
     {
         $data = $request->validated();
+        // dd($data);
+        $this->repository->create($data);
+
+        return redirect()->route('Contacts.index');
         
     }
 
@@ -57,7 +74,8 @@ class ContactsController extends Controller
      */
     public function edit($id)
     {
-        return view('contacts.edit');
+        $data = $this->repository->findContact($id);
+        return view('contacts.edit', compact('data'));
     }
 
     /**
@@ -69,7 +87,9 @@ class ContactsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        
+        // return redirect()->route('Contacts.index');
     }
 
     /**
@@ -80,6 +100,8 @@ class ContactsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->repository->delete($id);
+        
+        return redirect()->route('posts.index');
     }
 }

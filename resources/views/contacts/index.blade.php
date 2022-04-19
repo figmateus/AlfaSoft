@@ -26,6 +26,22 @@
         .button {
 
         }
+        .buttonEdit{
+                text-decoration: none;
+                padding: 2px;
+                margin: 5px;
+                border-radius: 2px;
+                background-color:aquamarine;
+                color: #000; 
+        }
+        .buttonDelete{
+            text-decoration: none;
+            padding: 2px;
+            margin: 5px;
+            border-radius: 3px;
+            background-color:brown;
+            color: #000; 
+        }
 
     </style>
 </head>
@@ -52,48 +68,23 @@
                             </tr>
                         </thead>
                         <tbody id="mytable">
+                            @foreach ($data as $item)
+                            {{-- {{dd($item)}} --}}
                             <tr>
-                                <td scope="row">1</td>
-                                <td scope="row">Teste</td>
-                                <td scope="row">991399048</td>
-                                <td scope="row">teste@gmail.com</td>
+                                <td scope="row">{{$item->id}}</td>
+                                <td scope="row">{{$item->name}}</td>
+                                <td scope="row">{{$item->contact}}</td>
+                                <td scope="row">{{$item->email}}</td>
                                 <td scope="row">
                                     <span>
-                                        <a href="#" role="button" class="button">edit</a>
+                                        <a href="{{URL::to('Contacts/' . $item->id . '/edit')}}" role="button" class="buttonEdit">edit</a>
                                     </span>
                                     <span>
-                                        <a href="#" role="button" class="button">delete</a>
+                                        <a href="{{URL::to('Contacts/' . $item->id . '/edit')}}" role="button" class="buttonDelete">delete</a>
                                     </span>
                                 </td>
                             </tr>
-                            <tr>
-                                <td scope="row">1</td>
-                                <td scope="row">Teste</td>
-                                <td scope="row">991399048</td>
-                                <td scope="row">teste@gmail.com</td>
-                                <td scope="row">
-                                    <span>
-                                        <a href="#" role="button" class="button">edit</a>
-                                    </span>
-                                    <span>
-                                        <a href="#" role="button" class="button">delete</a>
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td scope="row">1</td>
-                                <td scope="row">Teste</td>
-                                <td scope="row">991399048</td>
-                                <td scope="row">teste@gmail.com</td>
-                                <td scope="row">
-                                    <span>
-                                        <a href="#" role="button" class="button">edit</a>
-                                    </span>
-                                    <span>
-                                        <a href="#" role="button" class="button">delete</a>
-                                    </span>
-                                </td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
