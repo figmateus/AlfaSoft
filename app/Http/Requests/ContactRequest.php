@@ -26,7 +26,7 @@ class ContactRequest extends FormRequest
         return [
             'name'     => 'required|string',
             'contact' => 'required',
-            'email'    => 'email|required' 
+            'email'    => 'email|required|unique:contact' 
         ];
     }
 }

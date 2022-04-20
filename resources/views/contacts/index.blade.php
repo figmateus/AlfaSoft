@@ -2,6 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="index.css">
@@ -75,16 +76,19 @@
                                 <td scope="row">{{$item->contact}}</td>
                                 <td scope="row">{{$item->email}}</td>
                                 <td scope="row">
-                                    <span>
-                                        <a href="{{URL::to('contacts/' . $item->id . '/edit')}}" role="button" class="buttonEdit">edit</a>
-                                    </span>
-                                    <span>
-                                        <a href="{{URL::to('contacts/' . $item->id . '/edit')}}" role="button" class="buttonDelete">delete</a>
-                                    </span>
+                                    {{ Form::open(array('url' => 'contacts/' . $item->id . '/edit', 'class' => 'pull-right')) }}
+                                        {{ Form::hidden('_method', 'GET') }}
+                                        {{ Form::submit('Edit this contact', array('class' => 'btn btn-primary')) }}
+                                    {{ Form::close() }}
+                                </td>
+                                <td scope="row">
+                                    {{ Form::open(array('url' => 'contacts/' . $item->id, 'class' => 'pull-right')) }}
+                                        {{ Form::hidden('_method', 'DELETE') }}
+                                        {{ Form::submit('Delete this contact', array('class' => 'btn btn-warning')) }}
+                                    {{ Form::close() }}
                                 </td>
                             </tr>
                             @endforeach
-
                             <div>
                                 {{$data->links()}}
                             </div>
@@ -95,5 +99,4 @@
         </div>
     </div>
 </body>
-
 </html>

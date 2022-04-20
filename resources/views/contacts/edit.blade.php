@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -58,20 +59,20 @@
                             {{-- {{dd($data)}} --}}
                             <div class="form">
                                 <div class="col">
-                                    <label for="nome">Name:</label><br/>
-                                    <input class="field" type="text" value="{{$data->name}}" name="name" id="name"/>
+                                    <label class="form-label"  for="nome">Name:</label><br/>
+                                    <input class="form-control" type="text" value="{{$data->name}}" name="name" id="name"/>
                                 </div>
                                 <div class="col">
-                                    <label for="contacts">Contact:</label><br/>
-                                    <input class="field" type="number" value="{{$data->contact}}" name="contact" id="contact"/>
+                                    <label class="form-label"  for="contacts">Contact:</label><br/>
+                                    <input class="form-control" type="number" value="{{$data->contact}}" name="contact" id="contact"/>
                                 </div>
                                 <div class="col">
-                                    <label for="email">E-mail:</label><br/>
-                                    <input class="field" type="email" value="{{$data->email}}" name="email" id="email"/>
+                                    <label class="form-label"  for="email">E-mail:</label><br/>
+                                    <input class="form-control" type="email" value="{{$data->email}}" name="email" id="email"/>
                                 </div>
                                 <div class="col">
-                                    <button type="submit">Edit</button>
-                                    <a  href="{{route('contacts.index')}}"><button>back<button/></a>
+                                    <button class="btn btn-primary" type="submit">Edit</button>
+                                    <a type="button" class="btn btn-warning" href="{{url()->previous()}}">back</a>
                                 </div>
                                 
                             </div>

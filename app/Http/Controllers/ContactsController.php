@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Requests\ContactRequest;
 use App\Repositories\ContactsRepository;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class ContactsController extends Controller
@@ -35,7 +35,6 @@ class ContactsController extends Controller
      */
     public function create():View
     {
-        
         return view('contacts.create');
     }
 
@@ -45,13 +44,12 @@ class ContactsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ContactRequest $request)
+    public function store(ContactRequest $request):RedirectResponse
     {
         $data = $request->validated();
         $this->repository->create($data);
 
         return redirect()->route('contacts.index');
-        
     }
 
     /**
@@ -84,10 +82,10 @@ class ContactsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id, ContactRequest $request):RedirectResponse
     {
-        
-        
+        $payload = $request->validated();
+        $this->repository->edit($id, $payload);
         return redirect()->route('contacts.index');
     }
 
@@ -97,10 +95,10 @@ class ContactsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id):RedirectResponse
     {
         $this->repository->delete($id);
         
-        return redirect()->route('contacts.index');
+        return redirect('contacts')->with('success', 'Data Deleted!');
     }
 }

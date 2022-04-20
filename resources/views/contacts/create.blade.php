@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -53,20 +54,20 @@
                             @csrf
                             <div class="form">
                                 <div class="col">
-                                    <label for="nome">Name:</label><br/>
-                                    <input class="field" type="text" name="name" id="name"/>
+                                    <label class="form-label" for="nome">Name:</label><br/>
+                                    <input class="form-control" class="field" type="text" name="name" id="name"/>
                                 </div>
                                 <div class="col">
-                                    <label for="contacts">Contact:</label><br/>
-                                    <input class="field" type="number" name="contact" id="contact"/>
+                                    <label class="form-label" for="contacts">Contact:</label><br/>
+                                    <input class="form-control" type="number" name="contact" id="contact"/>
                                 </div>
                                 <div class="col">
-                                    <label for="email">E-mail:</label><br/>
-                                    <input class="field" type="email" name="email" id="email"/>
+                                    <label class="form-label" for="email">E-mail:</label><br/>
+                                    <input class="form-control" type="email" name="email" id="email"/>
                                 </div>
                                 <div class="col">
-                                    <input class="buttonCreate" type="submit" value="create"></input>
-                                    <a class="buttonBack" href="{{route('contacts.index')}}">back</a>
+                                    <input class="btn btn-primary" type="submit" value="create"></input>
+                                    <a type="button" class="btn btn-warning" href="{{route('contacts.index')}}">back</a>
                                 </div>
                             </div>
                         </form>
